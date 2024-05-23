@@ -8,14 +8,11 @@ fs.readdir('./pages', (err, files) => {
   files.forEach(file => {
     dir.push('./pages/' + file);
   });
-  console.log(dir);
 })
 
 http.createServer((req, res) => {
   const path = url.parse(req.url, true);
   const filename = path.path === '/' ? './pages/index.html' : './pages' + path.pathname + '.html';
-
-  console.log(filename);
 
   if (dir.includes(filename)) {
     fs.readFile(filename, (err, data) => {
