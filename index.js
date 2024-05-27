@@ -18,21 +18,21 @@ app.get('/', (req, res) => {
   });
 })
 
-app.get('/about', (req, res) => {
-  res.sendFile('about.html', options, (err) => {
+app.get('/:id', (req, res) => {
+  res.sendFile( req.params.id + '.html', options, (err) => {
     if (err) {
       console.error(err);
     }
   });
 })
 
-app.get('/contact-me', (req, res) => {
-  res.sendFile('contact-me.html', options, (err) => {
-    if (err) {
-      console.error(err);
-    }
-  });
-})
+// app.get('/contact-me', (req, res) => {
+//   res.sendFile('contact-me.html', options, (err) => {
+//     if (err) {
+//       console.error(err);
+//     }
+//   });
+// })
 
 app.get('*', (req, res) => {
   res.sendFile('404.html', options, (err) => {
