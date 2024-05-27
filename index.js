@@ -19,11 +19,19 @@ app.get('/', (req, res) => {
 })
 
 app.get('/:id', (req, res) => {
-  res.sendFile( req.params.id + '.html', options, (err) => {
-    if (err) {
-      console.error(err);
-    }
-  });
+  if (req.params.id === 'about' || req.params.id === 'contact-me') {
+    res.sendFile(req.params.id + '.html', options, (err) => {
+      if (err) {
+        console.error(err);
+      }
+    });
+  } else {
+    res.sendFile("404.html", options, (err) => {
+      if (err) {
+        console.error(err);
+      }
+    });
+  }
 })
 
 // app.get('/contact-me', (req, res) => {
@@ -34,13 +42,13 @@ app.get('/:id', (req, res) => {
 //   });
 // })
 
-app.get('*', (req, res) => {
-  res.sendFile('404.html', options, (err) => {
-    if (err) {
-      console.error(err);
-    }
-  });
-})
+// app.get('*', (req, res) => {
+//   res.sendFile('404.html', options, (err) => {
+//     if (err) {
+//       console.error(err);
+//     }
+//   });
+// })
 
 app.listen(PORT, (err) => {
   if (err) {
